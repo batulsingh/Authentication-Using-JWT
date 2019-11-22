@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  tests:
+    container_name: auth_service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    working_dir: usr/src
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    ports:
+      - 3306:3306
+    logging:
+      driver: none
